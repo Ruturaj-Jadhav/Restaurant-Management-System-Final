@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrderMe</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/menu.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+  <div class="home">
+    <div class="content">
+      <p class="main">Recommended dishes by restaurant</p>
+    </div>
+
+    <div class="content" id="main_course">
+      <p>MainCourse</p>
+    </div>
+
+
+    <% dishs.forEach(dish => { %>
+    <div class="food1 content" id="order">
+      <p class="one egg"><%=dish.dish%></p>
+      <div class="one1 price1">
+        <p>Rs.<%=dish.price%></p>
+      </div>
+      <div class=" one2 row1">
+        <div class="img1">
+          <img src="/Images/Add to cart1.jpg" alt="AddToCart">
+        </div>
+        <p class="count">0</p>
+        <div class="img2">
+          <img src="/Images/Remove from cart.png" alt="Remove from cart">
+        </div>
+      </div>
+      <button class="btn one3" onclick="handlePayment('<%=dish.price%>')">Pay Now</button>
+
+
+
+    </div>
+    <% }) %>
+  </div>
+  <script>
+    function handlePayment(amount) {
+      const form = document.createElement('form');
+      form.setAttribute('method', 'POST');
+      form.setAttribute('action', '/payment/order');
+
+      const amountInput = document.createElement('input');
+      amountInput.setAttribute('type', 'hidden');
+      amountInput.setAttribute('name', 'amount');
+      amountInput.setAttribute('value', amount*100);
+
+      form.appendChild(amountInput);
+
+      document.body.appendChild(form);
+      form.submit();
+    }
+
+
+  </script>
+</body>
+
+</html>

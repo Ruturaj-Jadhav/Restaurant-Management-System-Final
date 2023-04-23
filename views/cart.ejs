@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="/css/Order.css">
+</head>
+
+<body>
+    <div class="y_order">
+        <div class="content you">
+            <p class="text">YOUR ORDER</p>
+        </div>
+
+
+        <% dishes.forEach(dish =>{ %>
+        <div class="food1 content1" id="order">
+            <p class="one egg"><%=dish.dish%></</p> <div class="one1 price1">
+                <p>Rs.<%=dish.price%></p>
+        </div>
+
+    </div>
+
+    <% })%>
+    </div>
+
+    <div class="price">
+        <div class="subtotal">
+            <p class="name1 price5">Net Payable</p>
+            <p class="money price5">Rs.<%=totalPrice%></p>
+        </div>
+    </div>
+
+    <button class="click" onclick="handlePayment('<%=totalPrice%>')">Pay</button>
+
+    <script>
+           function handlePayment(amount) {
+      const form = document.createElement('form');
+      form.setAttribute('method', 'POST');
+      form.setAttribute('action', '/payment/order');
+
+      const amountInput = document.createElement('input');
+      amountInput.setAttribute('type', 'hidden');
+      amountInput.setAttribute('name', 'amount');
+      amountInput.setAttribute('value', amount*100);
+
+      form.appendChild(amountInput);
+
+      document.body.appendChild(form);
+      form.submit();
+    }
+    </script>
+
+</body>
+
+</html>

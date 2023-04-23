@@ -40,7 +40,7 @@
           <img src="/Images/Remove from cart.png" alt="Remove from cart">
         </div>
       </div>
-      <button class="btn one3" onclick="handlePayment('<%=dish.price%>')">Pay Now</button>
+      <button class="btn one3" onclick="handlePayment('<%=dish.price%>' , '<%=dish.dish%>')">Add to Cart</button>
 
 
 
@@ -48,22 +48,32 @@
     <% }) %>
   </div>
   <script>
-    function handlePayment(amount) {
+  
+    function handlePayment(amount , dish) {
       const form = document.createElement('form');
       form.setAttribute('method', 'POST');
-      form.setAttribute('action', '/payment/order');
+      form.setAttribute('action', '/cart/orders');
 
-      const amountInput = document.createElement('input');
+      var amountInput = document.createElement('input');
       amountInput.setAttribute('type', 'hidden');
-      amountInput.setAttribute('name', 'amount');
-      amountInput.setAttribute('value', amount*100);
+      amountInput.setAttribute('type', 'Integer');
+      amountInput.setAttribute('name', 'price');
+      amountInput.setAttribute('value', amount);
+
+
+
+      var dishInput = document.createElement('input');
+      dishInput.setAttribute('type', 'hidden');
+
+      dishInput.setAttribute('name', 'dish');
+      dishInput.setAttribute('value', dish);
 
       form.appendChild(amountInput);
+      form.appendChild(dishInput);
 
       document.body.appendChild(form);
       form.submit();
     }
-
 
   </script>
 </body>

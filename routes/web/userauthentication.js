@@ -13,12 +13,12 @@ const JWT_SECRET = process.env.JWT_SECRET
 const Usermodel = require('../../models/user.model');
 
 router.get('/' , (req , res)=>{
-    res.sendFile('D:/Web Development/Backend/NODE-RAZORPAY-MAIN/public/register.html');
+    res.sendFile('D:/Web Development/Backend/Restaurant Management System Final/public/register.html');
     
 })
 
 router.get('/login' , (req , res)=>{
-  res.sendFile('D:/Web Development/Backend/NODE-RAZORPAY-MAIN/public/login.html');
+  res.sendFile('D:/Web Development/Backend/Restaurant Management System Final/public/login.html');
 })
 
 router.post('/register' , async (req , res)=>{

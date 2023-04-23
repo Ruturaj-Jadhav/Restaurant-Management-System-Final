@@ -11,6 +11,8 @@ const bodyParser = require('body-parser')
 const indexWebroutes = require('./routes/web/index')
 const userAuthroutes = require("./routes/web/userauthentication")
 const paymentWebRoutes = require('./routes/web/payments');
+const cartWebroutes = require('./routes/web/cart');
+const session = require('express-session');
 
 // Create an instance of express app
 const app = express()
@@ -43,6 +45,7 @@ db.once('open', () => console.log('[STATUS] Connected to Database'))
 app.use("/" , userAuthroutes); // user auth routes
 app.use("/user",indexWebroutes);
 app.use('/payment', paymentWebRoutes);
+app.use('/cart' ,cartWebroutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,6 +53,7 @@ app.use(function(req, res, next) {
 	err.status = 404;
 	next(err);
 });
+// Use session for storing cart items
 
 // error handler
 app.use(function(err, req, res, next) {

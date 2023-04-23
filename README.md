@@ -7,5 +7,5 @@ npm install
 # create .env from .env.example and enter your credentials
 
 # serve app
-npm start
+nodemon app.js
 ```
